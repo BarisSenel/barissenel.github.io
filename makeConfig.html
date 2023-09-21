@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lua Configuration</title>
+</head>
+<body>
+    <h1>Lua Configuration</h1>
+    <form id="configForm">
+        <label for="webhookUrl">Webhook URL:</label>
+        <input type="text" id="webhookUrl" name="webhookUrl" placeholder="Enter Webhook URL"><br>
+        
+        <label for="worldsafe">World Safe:</label>
+        <input type="text" id="worldsafe" name="worldsafe" placeholder="Enter World Safe Name"><br>
+        
+        <label for="safeDoorId">Safe Door ID:</label>
+        <input type="text" id="safeDoorId" name="safeDoorId" placeholder="Enter World Safe Door ID"><br>
+        
+        <label for="doorId">Door ID:</label>
+        <input type="text" id="doorId" name="doorId" placeholder="Enter Door ID For Harvest Worlds"><br>
+
+        <label for="worldList">World List (comma-separated):</label>
+        <input type="text" id="worldList" name="worldList" placeholder="Enter World Names (comma-separated)"><br>
+
+        <!-- Add more input fields for other variables as needed -->
+        
+        <br>
+        <button type="button" onclick="generateLuaCode()">Generate Lua Code</button>
+    </form>
+    
+    <h2>Generated Lua Code:</h2>
+    <pre id="luaCode"></pre>
+    
+    <script>
+        function generateLuaCode() {
+            const form = document.getElementById("configForm");
+            const webhookUrl = form.elements.webhookUrl.value;
+            const worldsafe = form.elements.worldsafe.value;
+            const safeDoorId = form.elements.safeDoorId.value;
+            const doorId = form.elements.doorId.value;
+            const worldList = form.elements.worldList.value.split(',').map(item => item.trim());
+            
+            // Add similar lines for other variables
+            // For example: const blockId = form.elements.blockId.value;
+            
+            const luaCode = `
+---[Settings]---
+delay = 400 -- Harvest Delay
+blockId = 14 -- Block ID
+seedId = 15 -- Seed ID
+--------
+worldsafe = "${worldsafe}" -- Storage World Name 
+safeDoorID = "${safeDoorId}" -- Storage World Door ID
+----
+doorId = "${doorId}" -- Door id, should be the same for storage and plant worlds
+worldList = {${worldList.map(item => `"${item}"`).join(', ')}}
+-----------
+depoblock = 6388 -- For bot findpathing it must be background
+WebhookUrl = "${webhookUrl}"
+moonList = {10140, 10142, 10146, 10150, 10158, 10164, 10228, 11286, 12386, 1098, 1828 , 3870 , 7058 , 10134, 10136 , 10138 } -- change it to your self
+`;
+            document.getElementById("luaCode").textContent = luaCode;
+        }
+    </script>
+</body>
+</html>
