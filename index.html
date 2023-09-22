@@ -39,9 +39,17 @@
     <p>Click the button below to configure your Harvest Script settings:</p>
     <button class="configure-button" onclick="goToMakeConfig()">Configure Harvest Script</button>
 
+    <!-- Add a new button for harvest.lua -->
+    <button class="configure-button" onclick="goToHarvestScript()">View harvest.lua</button>
+
     <script>
         function goToMakeConfig() {
             window.location.href = 'makeConfig.html';
+        }
+
+        function goToHarvestScript() {
+            // Replace 'USERNAME' and 'REPO' with the appropriate GitHub username and repository name
+            window.location.href = 'https://github.com/BarisSenel/luciferScripts/blob/main/harvest.lua';
         }
     </script>
 </body>
