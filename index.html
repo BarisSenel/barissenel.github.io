@@ -36,11 +36,14 @@
 </head>
 <body>
     <h1>Welcome to Configuration Page For Scripts</h1>
-    <p>Click the button below to configure your Harvest Script settings:</p>
+    <p>Click the buttons below to configure your scripts:</p>
     <button class="configure-button" onclick="goToMakeConfig()">Configure Harvest Script</button>
 
     <!-- Add a new button for harvest.lua -->
     <button class="configure-button" onclick="goToHarvestScript()">View harvest.lua</button>
+
+    <!-- Add a new button for Rota Configuration -->
+    <button class="configure-button" onclick="goToRotaConfig()">Rota Configuration</button>
 
     <script>
         function goToMakeConfig() {
@@ -50,6 +53,11 @@
         function goToHarvestScript() {
             // Replace 'USERNAME' and 'REPO' with the appropriate GitHub username and repository name
             window.location.href = 'https://github.com/BarisSenel/luciferScripts/blob/main/harvest.lua';
+        }
+
+        // Function to go to Rota Configuration
+        function goToRotaConfig() {
+            window.location.href = 'https://barissenel.github.io/rotaConfig.html';
         }
     </script>
 </body>
