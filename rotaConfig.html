@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lua Configuration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lua Configuration</h1>
+        <form id="configForm">
+            <label for="farmName">Farm World:</label>
+            <input type="text" id="farmName" name="farmName" placeholder="Enter Farm name with door id.">
+
+            <label for="farmableID">Farmable ID:</label>
+            <input type="text" id="farmableID" name="farmableID" placeholder="Enter farmableID id.">
+            
+            <label for="seedStorage">Seed Storage:</label>
+            <input type="text" id="seedStorage" name="seedStorage" placeholder="Enter Seed Storage Name with door id">
+            
+            <label for="packStorage">Pack Storage:</label>
+            <input type="text" id="packStorage" name="packStorage" placeholder="Enter Pack Storage with door id.">
+            
+            <label for="packIndex">Pack Index:</label>
+            <input type="text" id="packIndex" name="packIndex" placeholder="Pack Index (0)">
+            
+            <button type="button" onclick="generateLuaCode()">Generate Lua Code</button>
+        </form>
+        
+        <h2>Generated Lua Code:</h2>
+        <pre id="luaCode"></pre>
+    </div>
+
+    <script>
+        function generateLuaCode() {
+            const form = document.getElementById("configForm");
+            const farmName = form.elements.farmName.value;
+            const farmableID = form.elements.farmableID.value;
+            const seedStorage = form.elements.seedStorage.value;
+            const packStorage = form.elements.packStorage.value;
+            const packIndex = form.elements.packIndex.value;
+            const luaCode = `
+-------SELECT BOT FROM MENU AND RUN THIS------------
+world_manager = getWorldManager()
+-------COPY PASTE TO EXECUTOR-----------------------
+world_manager:addFarm("${farmName}", ${farmableID})
+world_manager:addStorage("${seedStorage}", StorageType.seed, ${farmableID})
+world_manager:addStorage("${packStorage}", StorageType.pack, ${packIndex})
+----------------------------------------------------
+
+`;
+            document.getElementById("luaCode").textContent = luaCode;
+        }
+    </script>
+</body>
+</html>
